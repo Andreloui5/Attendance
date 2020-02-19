@@ -1,4 +1,5 @@
 import React from "react";
+import { Row, Col } from "react-materialize";
 import "./style.css";
 
 class BottomNav extends React.Component {
@@ -16,23 +17,23 @@ class BottomNav extends React.Component {
   render() {
     return (
       <div className="navbar-bottom">
-        <div className="row center">
-          <div className="col s4">
+        <Row className="center">
+          <Col s={4}>
             <a href="/">
               <i className="fa fa-home"></i>
             </a>
-          </div>
-          <div className="col s4">
+          </Col>
+          <Col s={4}>
             <a href="/newPerson" id="nav-menu">
               <i className="fas fa-user"></i>
             </a>
-          </div>
-          <div className="col s4">
+          </Col>
+          <Col s={4}>
             <a href="/newEvent">
               <i className="far fa-calendar-alt"></i>
             </a>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     );
   }
