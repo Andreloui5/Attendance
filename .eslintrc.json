@@ -23,6 +23,8 @@
         "react"
     ],
     "rules": {
+        "handle-callback-err":"warn",
+        "space-before-function-paren":"off",
         "no-duplicate-case":"error",
         "no-empty":"error",
         "no-extra-semi":"error",
