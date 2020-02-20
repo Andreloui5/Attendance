@@ -16,7 +16,8 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // connects to Mongo DB
-const mongoURL = process.env.MONGODB_URI || "mongodb://localhost:27017/attend";
+const mongoURL =
+  process.env.MONGOLAB_YELLOW_URI || "mongodb://localhost:27017/attend";
 mongoose.connect(mongoURL, { useNewUrlParser: true }).then(() => {
   console.log("Successfully connected to mongoDB").catch(err => {
     console.log("error connecting to mongoDB");

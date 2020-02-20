@@ -4,8 +4,7 @@ const db = require("../models");
 // This file empties the Books collection and inserts the books below
 
 mongoose.connect(
-  process.env.MONGODB_URI ||
-    "mongodb://heroku_sqdfjnrc:vf0l2ht3k4erljgaadm8jpktif@ds259250.mlab.com:59250/heroku_sqdfjnrc"
+  process.env.MONGOLAB_YELLOW_URI || "mongodb://localhost:2ttend"
 );
 
 const eventSeed = [
