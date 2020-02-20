@@ -17,7 +17,7 @@ class BottomNav extends React.Component {
   render() {
     return (
       <div className="navbar-bottom">
-        <Row className="center">
+        <Row className="bacenter">
           <Col s={4}>
             <a href="/">
               <i className="fa fa-home"></i>
