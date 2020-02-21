@@ -1,24 +1,18 @@
-.App {
-  text-align: center;
+.logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+/* adds full screen height to our main screen */
+.ant-layout {
+  height: 100vh;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+/* styles homescreen's h1 Title */
+Header h1 {
+  font-size: 50px;
+  padding: 15px;
+  margin-bottom: 10px;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}

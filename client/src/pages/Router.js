@@ -11,7 +11,7 @@ const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/person" component={NewPerson} />
+      {/* <Route exact path="/person" component={NewPerson} /> */}
       {/* <Route exact path="/event" component={NewEvent} />
       <Route path="/person/:Id" component={Person} />
       <Route path="/event/:Id" component={Event} /> */}

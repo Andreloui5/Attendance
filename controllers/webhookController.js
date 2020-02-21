@@ -2,31 +2,32 @@ const db = require("../models");
 
 // Defining methods for the webhookController
 module.exports = {
-  findAll: function(req, res) {
-    db.Person.find(req.query)
-      .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  findById: function(req, res) {
-    db.Person.findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  create: function(req, res) {
-    db.Person.create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  update: function(req, res) {
-    db.Person.findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  remove: function(req, res) {
-    db.Person.findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
+  evaluate: function(req, res) {
+    db.Person.findById({
+      mobile_number: req.body.data.subscriber.mobile_number
+    })
+      .then(res => {
+        // If exists, update person's keyword field
+        if (res.status === 200) {
+          db.Person.update({
+            keywordsTexted: req.body.data.keyword.name
+          });
+        }
+        // if person doesn't exist, create person
+        else {
+          db.Person.create({
+            mobile_number: req.body.data.subscriber.mobile_number,
+            first: req.body.data.subscriber.first,
+            last: req.body.data.subscriber.last,
+            email: req.body.data.subscriber.email,
+            date: req.body.created_at,
+            keywordsTexted: req.body.data.keyword.name
+          });
+        }
+      })
+      // upon success, send res of 200 to the origin of the webhook
+      .then(res.status(200))
+      // catch any errors
       .catch(err => res.status(422).json(err));
   }
 };
