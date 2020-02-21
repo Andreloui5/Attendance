@@ -3,7 +3,7 @@ const db = require("../models");
 // Defining methods for the webhookController
 module.exports = {
   evaluate: function(req, res) {
-    db.Person.findById({
+    db.Person.findOne({
       mobile_number: req.body.data.subscriber.mobile_number
     })
       .then(res => {
