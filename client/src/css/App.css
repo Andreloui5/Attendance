@@ -1,12 +1,16 @@
-.logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
-}
 
 /* adds full screen height to our main screen */
 .ant-layout {
   height: 100vh;
+}
+
+
+/* styles homescreen header  */
+.ant-layout-header {
+  background: #fff;
+  margin: 15px;
+  text-align: center;
+
 }
 
 /* styles homescreen's h1 Title */
@@ -16,3 +20,16 @@ Header h1 {
   margin-bottom: 10px;
 }
 
+
+/* style  */
+#app {
+  font: 70px;
+}
+
+/* logo img itself */
+#appLogo {
+  height: 150px;
+  margin: 30px 0 30px 45px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}

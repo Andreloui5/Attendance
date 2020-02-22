@@ -15,9 +15,7 @@ module.exports = {
     db.Person.findOne({
       mobile_number: mobile
     }).then(res => {
-      // console.log(res);
-      // let id = res._id;
-      // If exists, update person's keyword field
+      // If person does not exist, create person
       if (res === null) {
         db.Person.create({
           mobile_number: mobile,
@@ -34,7 +32,7 @@ module.exports = {
           // catch any errors
           .catch(err => res.status(422).json(err));
       }
-      // if person doesn't exist, create person
+      // if person already exists, update person's keyword field
       else {
         console.log("if");
         db.Person.findOneAndUpdate(
