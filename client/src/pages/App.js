@@ -12,7 +12,7 @@ import Logo from "../assets/Logo.png";
 import "antd/dist/antd.css";
 import "../css/App.css";
 
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 class App extends React.Component {
   state = {
@@ -68,11 +68,6 @@ class App extends React.Component {
               </Menu>
             </Sider>
             <Layout>
-              {/* Header for the app */}
-              <Header>
-                <h1>Attend</h1>
-              </Header>
-              {/* Router switches content underneath our header */}
               <Content style={{ margin: "24px 16px 0" }}>
                 <Switch>
                   <Route exact path={["/", "/home"]}>

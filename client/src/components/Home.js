@@ -12,8 +12,18 @@ import {
 
 class Home extends React.Component {
   render() {
+    function handleClick(e) {
+      e.preventDefault();
+      // Figure out how to handle click/ change the inner text of title in this button
+    }
+
     return (
-      <Container>
+      <Container id="topSearch">
+        <Row>
+          <h1 sm={12} className="headerText">
+            Search
+          </h1>
+        </Row>
         <Row>
           <InputGroup>
             <FormControl
@@ -28,7 +38,9 @@ class Home extends React.Component {
               title="Search For: "
               id="input-group-dropdown-2"
             >
-              <Dropdown.Item href="#">Event By Keyword</Dropdown.Item>
+              <Dropdown.Item href="#" onClick={handleClick}>
+                Event By Keyword
+              </Dropdown.Item>
               <Dropdown.Item href="#">Event By Name</Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item href="#">Person By Name</Dropdown.Item>
@@ -39,7 +51,7 @@ class Home extends React.Component {
         <Row>
           <Col md={{ offset: 8 }}></Col>
           <Col md={2}>
-            <Button variant="primary" type="submit">
+            <Button as={InputGroup.Append} variant="primary" type="submit">
               Submit
             </Button>
           </Col>
@@ -50,49 +62,3 @@ class Home extends React.Component {
 }
 
 export default Home;
-
-// <div id="index-banner" className="parallax-container">
-//         <div className="section no-pad-bot">
-//           <div className="container">
-//             <br />
-//             <br />
-//             <h1 className="header center text-lighten-2">
-//               Attend <i className="medium material-icons prefix">sms</i>
-//             </h1>
-//             <div className="row center">
-//               <h5 className="header col s12 light">Who's at your event?</h5>
-//             </div>
-
-//             <form id="mainSearch" className="row bottom">
-//               <div className="input-field col m8 s12 center">
-//                 <input id="search" type="search" required />
-//                 <label className="label-icon" for="search">
-//                   <i className="material-icons">search</i>
-//                 </label>
-//                 <i className="material-icons">close</i>
-//               </div>
-//               <div className="input-field col m4 s12">
-//                 <select required="required" id="searchParam">
-//                   <option value="">Choose</option>
-//                   <option value="eventName">Event by Name</option>
-//                   <option value="eventKeyword">Event by Keyword</option>
-//                   <option value="personName">Person by Name</option>
-//                   <option value="personCell">Person by Cell</option>
-//                 </select>
-//                 <label>Search For:</label>
-//               </div>
-//               <button
-//                 id="newSearch"
-//                 className="btn waves-effect waves-light row right"
-//                 type="submit"
-//                 name="action"
-//               >
-//                 Submit
-//                 <i className="material-icons right">send</i>
-//               </button>
-//             </form>
-//             <br />
-//             <br />
-//           </div>
-//         </div>
-//       </div>
