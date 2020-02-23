@@ -4,6 +4,7 @@ const moment = require("moment");
 
 const eventSchema = new Schema({
   keyword: { type: String, required: true },
+  name: { type: String, required: true },
   host: { type: String },
   type: String,
   // dates stamp formatted by moment().format()

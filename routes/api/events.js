@@ -14,4 +14,5 @@ router
   .put(eventsController.update)
   .delete(eventsController.remove);
 
+router.route("/keyword/:keyword").get(eventsController.findByKeyword);
 module.exports = router;

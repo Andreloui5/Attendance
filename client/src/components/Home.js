@@ -7,40 +7,63 @@ import {
   DropdownButton,
   FormControl
 } from "react-bootstrap";
-// import API from "../utils/API";
+import API from "../utils/API";
 
 function Home() {
-  // sets initial value for search parameters
-  // const [searchParam, setSearchParam] = useState([]);
-  // sets initial value for the search value itself
+  // Defines state for our search parameters
   const [searchParam, setSearchParam] = useState("Search By: ");
 
+  function handleClick(e) {
+    console.log(e.target.name);
+    const name = e.target.name;
+    // updates state with search parameter
+    setSearchParam(name);
+  }
+
+  useEffect(function updateDropdown() {
+    // finds search dropdown by id
+    let newTerm = document.getElementById("input-group-dropdown-2");
+    // updates the text of the search dropdown
+    newTerm.innerHTML = searchParam;
+  });
+
+  // sets initial value for the search value itself
+  const [searchValue, setSearchValue] = useState({ search: "" });
+  // sets state of seachValue as user types
+  function handleChange(e) {
+    // sets name and value based on change event
+    const { value } = e.target;
+    // sets search value with above info
+    setSearchValue({ ...searchValue, search: value });
+  }
+
+  useEffect(function handleChange() {
+    switch (searchParam) {
+      case "Event By Keyword":
+        findEventByKeyword(searchValue.search);
+        break;
+      case "Event By Name":
+        console.log("heya", searchValue);
+        break;
+      case "Person By Name":
+        console.log("hi");
+        break;
+      case "Person By Cell":
+        console.log("sup");
+        break;
+      default:
+        break;
+    }
+  });
   // getPerson = event => {
   //   API.findPerson(id).then(res => {
   //     setPerson(res.data).catch(err => console.log(err));
   //   });
   // };
-  // getEvent = event => {
-  //   API.findEvent(id).then(res => {
-  //     setEvent(res.data).catch(err => console.log(err));
-  //   });
-  // };
-
-  // function handleChange(e) {
-  //   const { name, value } = e.target;
-  //   // Figure out how to handle click/ change the inner text of title in this button
-  //   setSearchParam();
-  // }
-  useEffect(() => {
-    // Update the document title using the browser API
-    let me = document.getElementById("input-group-dropdown-2");
-    me.innerHTML = searchParam;
-  });
-
-  function handleClick(e) {
-    console.log(e.target.name);
-    const name = e.target.name;
-    setSearchParam(name);
+  function findEventByKeyword(value) {
+    API.findByKeyword(value).then(res => {
+      console.log(res.data);
+    });
   }
 
   return (
@@ -56,6 +79,7 @@ function Home() {
             placeholder="Search Text"
             aria-label="Search Text"
             aria-describedby="basic-addon2"
+            onChange={handleChange}
           />
 
           <DropdownButton
@@ -64,33 +88,17 @@ function Home() {
             title="Search For: "
             id="input-group-dropdown-2"
           >
-            <Dropdown.Item
-              // onChange={handleForm}
-              onClick={handleClick}
-              name="Event by Keyword"
-            >
+            <Dropdown.Item onClick={handleClick} name="Event By Keyword">
               Event By Keyword
             </Dropdown.Item>
-            <Dropdown.Item
-              // onChange={handleForm}
-              onClick={handleClick}
-              name="Event By Name"
-            >
+            <Dropdown.Item onClick={handleClick} name="Event By Name">
               Event By Name
             </Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item
-              // onChange={handleForm}
-              onClick={handleClick}
-              name="Person By Name"
-            >
+            <Dropdown.Item onClick={handleClick} name="Person By Name">
               Person By Name
             </Dropdown.Item>
-            <Dropdown.Item
-              // onChange={handleForm}
-              onClick={handleClick}
-              name="Person By Cell"
-            >
+            <Dropdown.Item onClick={handleClick} name="Person By Cell">
               Person By Cell
             </Dropdown.Item>
           </DropdownButton>

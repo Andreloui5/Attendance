@@ -10,24 +10,28 @@ mongoose.connect(
 const eventSeed = [
   {
     keyword: "webhooktest",
+    name: "Sunday Service",
     host: "Orangewood Church",
     type: "service",
     date: "2016-06-12T10:00:00Z"
   },
   {
     keyword: "webhooktest",
+    name: "Sunday Service",
     host: "Orangewood Church",
     type: "service",
     date: "2020-02-18T13:56:09-05:00"
   },
   {
     keyword: "hello",
+    name: "2020 Neighborhood Bash!",
     host: "Local Society",
     type: "block party",
     date: "2020-01-12T10:56:09-05:00"
   },
   {
     keyword: "hello",
+    name: "Community Matters",
     host: "Local Society",
     type: "town hall meeting",
     date: "2020-01-14T10:56:09-05:00"

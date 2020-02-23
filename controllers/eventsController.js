@@ -13,6 +13,16 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findByKeyword: function(req, res) {
+    db.Event.find({ keyword: req.params.keyword })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findByName: function(req, res) {
+    db.Event.find({ name: req.params.Name })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   create: function(req, res) {
     db.Event.create(req.body)
       .then(dbModel => res.json(dbModel))
