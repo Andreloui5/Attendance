@@ -7,14 +7,10 @@ import {
   DropdownButton,
   FormControl
 } from "react-bootstrap";
-import {
-  // findEventByKeyword,
-  findEventByName,
-  findPersonByName
-} from "../utils/apiRequests";
 import API from "../utils/API";
 import AccordionEvents from "./AccordionResultsEvents";
 import AccordionPeople from "./AccordionResultsPeople";
+import { searchNumber } from "../utils/helperfunctions";
 
 function Home() {
   // Defines state for our search parameters
@@ -102,10 +98,11 @@ function Home() {
     }, 400);
   }
   function findPersonByCell(value) {
+    let newSearch = searchNumber(value);
     // set Timeout so that the API doesn't fire until a break in typing
     setTimeout(() => {
       //makes an api call to find events by keyword
-      API.findByCell(value).then(res => {
+      API.findByCell(newSearch).then(res => {
         setSearchResults(res.data);
         console.log(res.data);
       });

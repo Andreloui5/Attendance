@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Accordion, Card, Button, Container } from "react-bootstrap";
+import { viewKeywords, formatPhoneNumber } from "../utils/helperfunctions";
 
 function AccordionPeople(props) {
   return (
@@ -15,9 +16,10 @@ function AccordionPeople(props) {
             </Card.Header>
             <Accordion.Collapse eventKey="0">
               <Card.Body>
-                Mobile Number: {result.mobile_number} <br />
+                Mobile Number: {formatPhoneNumber(result.mobile_number)} <br />
                 Email: {result.email} <br />
-                Keywords Texted: {result.keyword} <br />
+                Keywords Texted: {viewKeywords(result.keywordsTexted)}
+                <br />
                 <a href={"people/" + result._id}>
                   See events this person has attended
                 </a>
