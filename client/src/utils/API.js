@@ -38,7 +38,7 @@ export default {
   },
   // saves a person with data from the form
   savePerson: function(personData) {
-    return axios.get("/api/people", personData);
+    return axios.post("/api/people", personData);
   },
   findPersonByFirst: function(first) {
     return axios.get("/api/people/name/" + first);

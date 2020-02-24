@@ -1,43 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Button, Col, Container, Row } from "react-bootstrap";
 import "../css/App.css";
 import { numberScrub } from "../utils/helperfunctions";
+import API from "../utils/API";
 
 function NewPerson() {
   // const [formValue, setFormValue] = useState({});
   function handleClick(e) {
     e.preventDefault();
-    // setFormValue({
-    //   ...setFormValue,
-    //   first: e.target.formPersonFirst.value,
-    //   last: e.target.formPersonLast.value,
-    //   email: e.target.formPersonEmail.value,
-    //   mobile_number: numberScrub(e.target.formPersonPhone.value)
-    // });
 
-    // let mobile = req.body.data.subscriber.mobile_number;
-    // let first = e.target.formPersonFirst.value;
-    // let last = e.target.formPersonLast.value;
-    // let email = e.target.formPersonEmail.value;
-    // let date = ;
-    // let keywordsTexted = req.body.data.keyword.name;
-
-    // // console.log(typeof mobile);
-    // API.create({
-    //   mobile_number: mobile,
-    //   first: first,
-    //   last: last,
-    //   email: email,
-    //   date: date,
-    //   keywordsTexted: keywordsTexted
-    // })
-    //   // upon success, send res of 200 to the origin of the webhook
-    //   .then(res => {
-    //     console.log(res);
-    //   })
-    //   // catch any errors
-    //   .catch(err => res.status(422).json(err));
-    // res.json();
+    let mobile = numberScrub(e.target.formPersonPhone.value);
+    let first = e.target.formPersonFirst.value;
+    let last = e.target.formPersonLast.value;
+    let email = e.target.formPersonEmail.value;
+    API.savePerson({
+      mobile_number: mobile,
+      first: first,
+      last: last,
+      email: email
+    })
+      // upon success, send res of 200 to the origin of the webhook
+      .then(res => {
+        console.log(res);
+      })
+      .then(alert("saved"));
   }
 
   return (

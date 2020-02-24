@@ -1,7 +1,27 @@
 import React from "react";
 import { Form, Button, Col, Container, Row } from "react-bootstrap";
+import API from "../utils/API";
 
 function NewEvent() {
+  function handleClick(e) {
+    e.preventDefault();
+
+    let name = e.target.formEventName.value;
+    let keyword = e.target.formEventKeyword.value;
+    let host = e.target.formEventHost.value;
+    let type = e.target.formEventType.value;
+    API.saveEvent({
+      name: name,
+      keyword: keyword,
+      host: host,
+      type: type
+    })
+      // upon success, send res of 200 to the origin of the webhook
+      .then(res => {
+        console.log(res);
+      })
+      .then(alert("saved"));
+  }
   return (
     <Container>
       <Row>
@@ -9,7 +29,7 @@ function NewEvent() {
           New Event
         </h1>
       </Row>
-      <Form>
+      <Form onSubmit={handleClick}>
         <Form.Row className="mt-2">
           <Form.Group md={6} sm={12} as={Col} controlId="formEventName">
             <Form.Label>Event Name</Form.Label>
@@ -30,7 +50,7 @@ function NewEvent() {
 
           <Form.Group md={6} sm={12} as={Col} controlId="formEventHost">
             <Form.Label>Event Host</Form.Label>
-            <Form.Control placeholder="ex: ABC Company" />
+            <Form.Control placeholder="ex: Bob Smith, ABC Company, etc." />
           </Form.Group>
         </Form.Row>
 
