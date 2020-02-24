@@ -14,4 +14,6 @@ router
   .put(peopleController.update)
   .delete(peopleController.remove);
 
+// Matches tih "/api/people/:first/:last"
+router.route("/:first/:last").get(peopleController.findPersonByName);
 module.exports = router;

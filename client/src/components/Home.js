@@ -7,7 +7,11 @@ import {
   DropdownButton,
   FormControl
 } from "react-bootstrap";
-import API from "../utils/API";
+import {
+  findEventByKeyword,
+  findEventByName,
+  findPersonByName
+} from "../utils/apiRequests";
 
 function Home() {
   // Defines state for our search parameters
@@ -43,10 +47,10 @@ function Home() {
         findEventByKeyword(searchValue.search);
         break;
       case "Event By Name":
-        console.log("heya", searchValue);
+        findEventByName(searchValue.search);
         break;
       case "Person By Name":
-        console.log("hi");
+        findPersonByName(searchValue.search);
         break;
       case "Person By Cell":
         console.log("sup");
@@ -55,16 +59,6 @@ function Home() {
         break;
     }
   });
-  // getPerson = event => {
-  //   API.findPerson(id).then(res => {
-  //     setPerson(res.data).catch(err => console.log(err));
-  //   });
-  // };
-  function findEventByKeyword(value) {
-    API.findByKeyword(value).then(res => {
-      console.log(res.data);
-    });
-  }
 
   return (
     <Container id="topSearch">

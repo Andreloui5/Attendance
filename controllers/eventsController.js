@@ -14,12 +14,14 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findByKeyword: function(req, res) {
-    db.Event.find({ keyword: req.params.keyword })
+    db.Event.find({ keyword: { $regex: req.params.keyword, $options: "i" } })
+      .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findByName: function(req, res) {
-    db.Event.find({ name: req.params.Name })
+    db.Event.find({ name: req.params.name })
+      .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

@@ -13,6 +13,12 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findPersonByName: function(req, res) {
+    db.Person.find({ first: req.params.first, last: req.params.last })
+      .sort({ date: -1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   create: function(req, res) {
     db.Person.create(req.body)
       .then(dbModel => res.json(dbModel))

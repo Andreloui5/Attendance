@@ -7,6 +7,9 @@ export default {
   findByKeyword: function(keyword) {
     return axios.get("/api/events/keyword/" + keyword);
   },
+  findAll: function() {
+    return axios.get("/api/events/");
+  },
   // finds a specific event
   findEvent: function(id) {
     return axios.get("/api/events/" + id);
@@ -33,5 +36,8 @@ export default {
   // saves a person with data from the form
   savePerson: function(personData) {
     return axios.get("/api/people", personData);
+  },
+  findPersonByName: function(first, last) {
+    return axios.get("/api/people/name/" + first + "/" + last);
   }
 };

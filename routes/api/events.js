@@ -15,4 +15,5 @@ router
   .delete(eventsController.remove);
 
 router.route("/keyword/:keyword").get(eventsController.findByKeyword);
+router.route("name/:name").get(eventsController.findByName);
 module.exports = router;
