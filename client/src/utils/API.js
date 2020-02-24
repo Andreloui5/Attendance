@@ -7,6 +7,9 @@ export default {
   findByKeyword: function(keyword) {
     return axios.get("/api/events/keyword/" + keyword);
   },
+  findByName: function(name) {
+    return axios.get("/api/events/name/" + name);
+  },
   findAll: function() {
     return axios.get("/api/events/");
   },
@@ -37,7 +40,13 @@ export default {
   savePerson: function(personData) {
     return axios.get("/api/people", personData);
   },
-  findPersonByName: function(first, last) {
+  findPersonByFirst: function(first) {
+    return axios.get("/api/people/name/" + first);
+  },
+  findPersonByFull: function(first, last) {
     return axios.get("/api/people/name/" + first + "/" + last);
+  },
+  findByCell: function(number) {
+    return axios.get("/api/people/cell/" + number);
   }
 };

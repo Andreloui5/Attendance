@@ -13,9 +13,28 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findPersonByName: function(req, res) {
-    db.Person.find({ first: req.params.first, last: req.params.last })
-      .sort({ date: -1 })
+  findPersonByFirst: function(req, res) {
+    db.Person.find({
+      first: { $regex: req.params.first, $options: "i" }
+    })
+      .sort({ last: 1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findPersonByCell: function(req, res) {
+    db.Person.find({
+      mobile_number: { $regex: req.params.number, $options: "i" }
+    })
+      .sort({ last: 1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findPersonByFull: function(req, res) {
+    db.Person.find({
+      first: { $regex: req.params.first, $options: "i" },
+      last: { $regex: req.params.last, $options: "i" }
+    })
+      .sort({ last: 1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

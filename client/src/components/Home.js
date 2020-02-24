@@ -5,10 +5,7 @@ import {
   InputGroup,
   Dropdown,
   DropdownButton,
-  FormControl,
-  Accordion,
-  Card,
-  Button
+  FormControl
 } from "react-bootstrap";
 import {
   // findEventByKeyword,
@@ -18,7 +15,6 @@ import {
 import API from "../utils/API";
 import AccordionEvents from "./AccordionResultsEvents";
 import AccordionPeople from "./AccordionResultsPeople";
-import moment from "moment";
 
 function Home() {
   // Defines state for our search parameters
@@ -38,38 +34,34 @@ function Home() {
     newTerm.innerHTML = searchParam;
   });
 
-  // sets initial value for the search value itself
-  const [searchValue, setSearchValue] = useState({ search: "" });
-  // sets state of seachValue as user types
-  function handleChange(e) {
-    // sets name and value based on change event
-    const { value } = e.target;
-    // sets search value with above info
-    setSearchValue({ ...searchValue, search: value });
-  }
+  // initializes searchValue state
+  const [searchValue, setSearchValue] = useState();
 
-  useEffect(function handleChange() {
+  useEffect(() => {
     // switch statement searches different APIs depending on user selection
     switch (searchParam) {
       case "Event By Keyword":
-        findEventByKeyword(searchValue.search);
+        findEventByKeyword(searchValue);
         break;
       case "Event By Name":
-        findEventByName(searchValue.search);
+        findEventByName(searchValue);
         break;
       case "Person By Name":
-        findPersonByName(searchValue.search);
+        findPersonByName(searchValue);
         break;
       case "Person By Cell":
-        console.log("sup");
+        findPersonByCell(searchValue);
         break;
       default:
         break;
     }
-  });
+    // Each time searchValue is updated, call this switch
+  }, [searchValue]);
 
   // sets search results to state
   const [searchResults, setSearchResults] = useState([]);
+
+  // ===== API Calls ===== //
 
   function findEventByKeyword(value) {
     // set Timeout so that the API doesn't fire until a break in typing
@@ -78,8 +70,46 @@ function Home() {
       API.findByKeyword(value).then(res => {
         setSearchResults(res.data);
         console.log(res.data);
-      }, 400);
-    });
+      });
+    }, 400);
+  }
+  function findEventByName(value) {
+    // set Timeout so that the API doesn't fire until a break in typing
+    setTimeout(() => {
+      //makes an api call to find events by keyword
+      API.findByName(value).then(res => {
+        setSearchResults(res.data);
+        console.log(res.data);
+      });
+    }, 400);
+  }
+  function findPersonByName(value) {
+    let searchText = value.trim().split(" ");
+    // set Timeout so that the API doesn't fire until a break in typing
+    setTimeout(() => {
+      if (searchText.length <= 1) {
+        //makes an api call to find events by keyword
+        API.findPersonByFirst(...searchText).then(res => {
+          setSearchResults(res.data);
+          console.log(res.data);
+        });
+      } else {
+        API.findPersonByFull(...searchText).then(res => {
+          setSearchResults(res.data);
+          console.log(res.data);
+        });
+      }
+    }, 400);
+  }
+  function findPersonByCell(value) {
+    // set Timeout so that the API doesn't fire until a break in typing
+    setTimeout(() => {
+      //makes an api call to find events by keyword
+      API.findByCell(value).then(res => {
+        setSearchResults(res.data);
+        console.log(res.data);
+      });
+    }, 400);
   }
 
   return (
@@ -95,9 +125,8 @@ function Home() {
             placeholder="Search Text"
             aria-label="Search Text"
             aria-describedby="basic-addon2"
-            onChange={handleChange}
+            onChange={e => setSearchValue(e.target.value)}
           />
-
           <DropdownButton
             as={InputGroup.Append}
             variant="outline-secondary"
@@ -120,40 +149,17 @@ function Home() {
           </DropdownButton>
         </InputGroup>
       </Row>
-      {/* {searchValue.search === "Event By Keyword" ||
-      searchValue.search === "Event By Name" ? (
+      {/* Conditionally Renders results depending on search Parameters chosen by user */}
+      {searchParam === "Event By Keyword" || searchParam === "Event By Name" ? (
         <AccordionEvents results={searchResults} />
       ) : (
-        <AccordionPeople />
-      )} */}
-      <Container className="mt-5">
-        {searchResults.map(result => (
-          <Accordion
-            defaultActiveKey="1"
-            key={result._id}
-            xl={12}
-            className="m-1"
-          >
-            <Card>
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                  {result.name}, {moment(result.date).format("ll")}
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="0">
-                <Card.Body>
-                  Event Host: {result.host} <br />
-                  Type of Event: {result.type} <br />
-                  Keyword Used: {result.keyword} <br />
-                  <a href={"events/" + result._id}>
-                    See Attenders from this Event
-                  </a>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-          </Accordion>
-        ))}
-      </Container>
+        <div></div>
+      )}
+      {searchParam === "Person By Name" || searchParam === "Person By Cell" ? (
+        <AccordionPeople results={searchResults} />
+      ) : (
+        <div></div>
+      )}
     </Container>
   );
 }

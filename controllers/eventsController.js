@@ -20,8 +20,8 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findByName: function(req, res) {
-    db.Event.find({ name: req.params.name })
-      .sort({ date: -1 })
+    db.Event.find({ name: { $regex: req.params.name, $options: "i" } })
+      .sort({ name: 1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

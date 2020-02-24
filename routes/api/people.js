@@ -14,6 +14,10 @@ router
   .put(peopleController.update)
   .delete(peopleController.remove);
 
-// Matches tih "/api/people/:first/:last"
-router.route("/:first/:last").get(peopleController.findPersonByName);
+// Matches with "/api/people/:first
+router.route("/name/:first").get(peopleController.findPersonByFirst);
+// Matches with "/api/people/:first"
+router.route("/name/:first/:last").get(peopleController.findPersonByFull);
+// Matches with "/api/people/cell/:number
+router.route("/cell/:number").get(peopleController.findPersonByCell);
 module.exports = router;

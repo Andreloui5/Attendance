@@ -15,11 +15,6 @@ import "../css/App.css";
 const { Content, Sider } = Layout;
 
 class App extends React.Component {
-  state = {
-    me: 1,
-    me1: 2,
-    me2: 3
-  };
   render() {
     return (
       <Router>
