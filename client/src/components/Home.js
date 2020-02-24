@@ -5,7 +5,10 @@ import {
   InputGroup,
   Dropdown,
   DropdownButton,
-  FormControl
+  FormControl,
+  Accordion,
+  Card,
+  Button
 } from "react-bootstrap";
 import {
   // findEventByKeyword,
@@ -15,6 +18,7 @@ import {
 import API from "../utils/API";
 import AccordionEvents from "./AccordionResultsEvents";
 import AccordionPeople from "./AccordionResultsPeople";
+import moment from "moment";
 
 function Home() {
   // Defines state for our search parameters
@@ -81,7 +85,7 @@ function Home() {
   return (
     <Container id="topSearch">
       <Row>
-        <h1 sm={12} className="headerText">
+        <h1 sm={12} className="headerText mt-5">
           Search
         </h1>
       </Row>
@@ -116,12 +120,40 @@ function Home() {
           </DropdownButton>
         </InputGroup>
       </Row>
-      {searchValue.search === "Event By Keyword" ||
+      {/* {searchValue.search === "Event By Keyword" ||
       searchValue.search === "Event By Name" ? (
         <AccordionEvents results={searchResults} />
       ) : (
         <AccordionPeople />
-      )}
+      )} */}
+      <Container className="mt-5">
+        {searchResults.map(result => (
+          <Accordion
+            defaultActiveKey="1"
+            key={result._id}
+            xl={12}
+            className="m-1"
+          >
+            <Card>
+              <Card.Header>
+                <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                  {result.name}, {moment(result.date).format("ll")}
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey="0">
+                <Card.Body>
+                  Event Host: {result.host} <br />
+                  Type of Event: {result.type} <br />
+                  Keyword Used: {result.keyword} <br />
+                  <a href={"events/" + result._id}>
+                    See Attenders from this Event
+                  </a>
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
+        ))}
+      </Container>
     </Container>
   );
 }
