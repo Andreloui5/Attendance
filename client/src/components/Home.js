@@ -8,10 +8,13 @@ import {
   FormControl
 } from "react-bootstrap";
 import {
-  findEventByKeyword,
+  // findEventByKeyword,
   findEventByName,
   findPersonByName
 } from "../utils/apiRequests";
+import API from "../utils/API";
+import AccordionEvents from "./AccordionResultsEvents";
+import AccordionPeople from "./AccordionResultsPeople";
 
 function Home() {
   // Defines state for our search parameters
@@ -42,6 +45,7 @@ function Home() {
   }
 
   useEffect(function handleChange() {
+    // switch statement searches different APIs depending on user selection
     switch (searchParam) {
       case "Event By Keyword":
         findEventByKeyword(searchValue.search);
@@ -59,6 +63,20 @@ function Home() {
         break;
     }
   });
+
+  // sets search results to state
+  const [searchResults, setSearchResults] = useState([]);
+
+  function findEventByKeyword(value) {
+    // set Timeout so that the API doesn't fire until a break in typing
+    setTimeout(() => {
+      //makes an api call to find events by keyword
+      API.findByKeyword(value).then(res => {
+        setSearchResults(res.data);
+        console.log(res.data);
+      }, 400);
+    });
+  }
 
   return (
     <Container id="topSearch">
@@ -98,14 +116,12 @@ function Home() {
           </DropdownButton>
         </InputGroup>
       </Row>
-      {/* <Row>
-        <Col md={{ offset: 8 }}></Col>
-        <Col md={2}>
-          <Button as={InputGroup.Append} variant="primary" type="submit">
-            Submit
-          </Button>
-        </Col>
-      </Row> */}
+      {searchValue.search === "Event By Keyword" ||
+      searchValue.search === "Event By Name" ? (
+        <AccordionEvents results={searchResults} />
+      ) : (
+        <AccordionPeople />
+      )}
     </Container>
   );
 }

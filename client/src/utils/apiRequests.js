@@ -1,13 +1,13 @@
 import API from "./API";
-export function findEventByKeyword(value) {
-  // set Timeout so that the API doesn't fire until a break in typing
-  setTimeout(() => {
-    //makes an api call to find events by keyword
-    API.findByKeyword(value).then(res => {
-      console.log(res.data);
-    }, 400);
-  });
-}
+// export function findEventByKeyword(value) {
+//   // set Timeout so that the API doesn't fire until a break in typing
+//   setTimeout(() => {
+//     //makes an api call to find events by keyword
+//     API.findByKeyword(value).then(res => {
+//       setSearchResults(res.data);
+//     }, 400);
+//   });
+// }
 export function findPersonByName(value) {
   let searchText = value.trim().split(" ");
   let first = searchText[0];

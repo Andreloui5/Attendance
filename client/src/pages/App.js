@@ -74,11 +74,7 @@ class App extends React.Component {
                     <Home />
                   </Route>
                   <Route exact path="/people/:id">
-                    <Person
-                      prop1={this.state.me}
-                      prop2={this.state.me1}
-                      prop3={this.state.me2}
-                    />
+                    <Person />
                   </Route>
                   <Route exact path="/newPerson">
                     <NewPerson />
