@@ -34,3 +34,19 @@ export function viewKeywords(array) {
   let unique = [...new Set(array)];
   return unique.join(", ");
 }
+
+export function parsePair(keywordDatePair) {
+  // this function takes an array of objects and then parses the value of each index
+  let array = [];
+  for (let i = 0; i < keywordDatePair.length; i++) {
+    let value = keywordDatePair[i].value.split("&&&&");
+    value.forEach(item => {
+      array.push(item);
+    });
+  }
+  return array;
+}
+// keywordDatePair.forEach(pair => {
+//   //returns an array wth the two values in keywordDatePair
+//   return (newVal = pair.value.split("&&&&"));
+// });

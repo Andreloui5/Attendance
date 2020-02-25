@@ -38,7 +38,7 @@ module.exports = {
       else {
         console.log("if");
         // db.Person.findOneAndUpdate(
-        db.Person.update(
+        db.Person.findOneAndUpdate(
           { _id: res._id },
           {
             $push: {
