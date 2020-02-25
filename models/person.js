@@ -9,10 +9,7 @@ const personSchema = new Schema({
   email: String,
   date: { type: Date, default: moment().format() },
   keywordsTexted: [{ type: String }],
-  pair: [
-    { date: { type: Date, default: moment().format() } },
-    { keywordsTexted: { type: String } }
-  ]
+  keywordDatePair: [{ type: String }]
 });
 
 const Person = mongoose.model("Person", personSchema);

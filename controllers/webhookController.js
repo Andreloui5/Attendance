@@ -10,6 +10,7 @@ module.exports = {
     let email = req.body.data.subscriber.email;
     let date = req.body.created_at;
     let keywordsTexted = req.body.data.keyword.name;
+    let keywordDatePair = `${req.body.data.keyword.name}&&&&${req.body.created_at}`;
 
     // console.log(typeof mobile);
     db.Person.findOne({
@@ -24,7 +25,7 @@ module.exports = {
           email: email,
           date: date,
           keywordsTexted: keywordsTexted,
-          pair: [{ date }, { keywordsTexted }]
+          keywordDatePair: keywordDatePair
         })
           // upon success, send res of 200 to the origin of the webhook
           .then(res => {
@@ -36,10 +37,11 @@ module.exports = {
       // if person already exists, update person's keyword field
       else {
         console.log("if");
+        // db.Person.findOneAndUpdate(
         db.Person.findOneAndUpdate(
           { _id: res._id },
           { $push: { keywordsTexted: keywordsTexted } },
-          { $push: { pair: [{ date }, { keywordsTexted }] } },
+          { $push: { keywordDatePair: keywordsDatePair } },
           { new: true }
         )
           // upon success, send res of 200 to the origin of the webhook
