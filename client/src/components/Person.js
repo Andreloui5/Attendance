@@ -1,11 +1,22 @@
-import React from "react";
-// import API from "../utils/API";
+import React, { useState, useEffect } from "react";
+import PersonCard from "../components/PersonCard";
+import API from "../utils/API";
 
-class Person extends React.Component {
+function Person() {
+  // get the required parameter
+  const query = window.location.pathname.substring(8);
+  const [searchResults, setSearchResults] = useState("");
   // function uses the api to search for a person in the database
-  render() {
-    return <div></div>;
-  }
+  useEffect(() => {
+    API.findPerson(query).then(res => {
+      setSearchResults(res.data);
+      console.log(res.data);
+    });
+  }, []);
+  return (
+    <div>
+      {searchResults !== "" ? <PersonCard res={searchResults} /> : <div></div>}
+    </div>
+  );
 }
-
 export default Person;
