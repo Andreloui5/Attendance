@@ -38,10 +38,14 @@ module.exports = {
       else {
         console.log("if");
         // db.Person.findOneAndUpdate(
-        db.Person.findOneAndUpdate(
+        db.Person.update(
           { _id: res._id },
-          { $push: { keywordsTexted: keywordsTexted } },
-          { $push: { keywordDatePair: keywordsDatePair } },
+          {
+            $push: {
+              keywordsTexted: keywordsTexted,
+              keywordDatePair: keywordsDatePair
+            }
+          },
           { new: true }
         )
           // upon success, send res of 200 to the origin of the webhook

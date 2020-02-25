@@ -12,7 +12,7 @@ function AccordionEvents(props) {
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                {result.name}, {moment(result.date).format("ll")}
+                {result.name}: {moment(result.date).format("ll")}
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="0">
