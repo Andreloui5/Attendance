@@ -23,7 +23,8 @@ module.exports = {
           last: last,
           email: email,
           date: date,
-          keywordsTexted: keywordsTexted
+          keywordsTexted: keywordsTexted,
+          pair: [{ date }, { keywordsTexted }]
         })
           // upon success, send res of 200 to the origin of the webhook
           .then(res => {
@@ -38,6 +39,7 @@ module.exports = {
         db.Person.findOneAndUpdate(
           { _id: res._id },
           { $push: { keywordsTexted: keywordsTexted } },
+          { $push: { pair: [{ date }, { keywordsTexted }] } },
           { new: true }
         )
           // upon success, send res of 200 to the origin of the webhook

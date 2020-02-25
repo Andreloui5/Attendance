@@ -8,7 +8,11 @@ const personSchema = new Schema({
   last: String,
   email: String,
   date: { type: Date, default: moment().format() },
-  keywordsTexted: [{ type: String }]
+  keywordsTexted: [{ type: String }],
+  pair: [
+    { date: { type: Date, default: moment().format() } },
+    { keywordsTexted: { type: String } }
+  ]
 });
 
 const Person = mongoose.model("Person", personSchema);
