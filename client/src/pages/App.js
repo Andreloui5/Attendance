@@ -74,7 +74,7 @@ class App extends React.Component {
                   <Route exact path="/newPerson">
                     <NewPerson />
                   </Route>
-                  <Route exact path="/event/:id">
+                  <Route exact path="/events/:id">
                     <Event />
                   </Route>
                   <Route exact path="/newEvent">

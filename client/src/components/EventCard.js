@@ -5,13 +5,11 @@ import API from "../utils/API";
 import moment from "moment";
 import { formatPhoneNumber } from "../utils/helperfunctions";
 
-function PersonCard(props) {
-  function handleText() {}
+function EventCard(props) {
   // function handleUpdate() {}
 
-  // whe
   function handleDelete() {
-    API.deletePerson(props.res._id)
+    API.deleteEvent(props.res._id)
       // .then(<Success />);
       .then(() => (document.location.href = "/"));
   }
@@ -27,11 +25,8 @@ function PersonCard(props) {
       <PageHeader
         ghost={false}
         onBack={() => window.history.back()}
-        title={`${props.res.first} ${props.res.last}`}
+        title={`${props.res.name}`}
         extra={[
-          <Button key="3" onClick={handleText}>
-            Text this Person
-          </Button>,
           // <Button key="2" onClick={handleUpdate}>
           //   Update
           // </Button>,
@@ -41,21 +36,19 @@ function PersonCard(props) {
         ]}
       >
         <Descriptions size="small" column={3}>
-          <Descriptions.Item label="Cell Number">
-            {formatPhoneNumber(props.res.mobile_number)}
+          <Descriptions.Item label="Host">{props.res.host}</Descriptions.Item>
+          <Descriptions.Item label="Type of Event">
+            {props.res.type}
           </Descriptions.Item>
-          <Descriptions.Item label="Email">
-            <a href={`mailto: ${props.res.email}`}>{props.res.email}</a>
-          </Descriptions.Item>
-          <Descriptions.Item label="Date Joined">
+          <Descriptions.Item label="Date of Event">
             {moment(props.res.date).format("ll")}
           </Descriptions.Item>
-          <Descriptions.Item label="Keywords Texted">
-            {viewKeywords(props.res.keywordsTexted)}
+          <Descriptions.Item label="Keyword Used">
+            {props.res.keyword}
           </Descriptions.Item>
         </Descriptions>
       </PageHeader>
     </div>
   );
 }
-export default PersonCard;
+export default EventCard;

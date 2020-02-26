@@ -40,5 +40,11 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  populate: function(req, res) {
+    db.Event.findById({ _id: req.params.id })
+      .populate("attenders")
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };

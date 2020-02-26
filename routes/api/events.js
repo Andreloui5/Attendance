@@ -16,4 +16,5 @@ router
 
 router.route("/keyword/:keyword").get(eventsController.findByKeyword);
 router.route("/name/:name").get(eventsController.findByName);
+router.route("/populate/:id").get(eventsController.populate);
 module.exports = router;

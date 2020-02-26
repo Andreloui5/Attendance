@@ -25,6 +25,9 @@ export default {
   saveEvent: function(eventData) {
     return axios.post("/api/events", eventData);
   },
+  findAttenders: function(id) {
+    return axios.get("/api/events/populate/" + id);
+  },
 
   //REQUESTS FOR PEOPLE
 
@@ -48,5 +51,8 @@ export default {
   },
   findByCell: function(number) {
     return axios.get("/api/people/cell/" + number);
+  },
+  findEventsAttended: function(id) {
+    return axios.get("/api/people/populate/" + id);
   }
 };

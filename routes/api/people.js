@@ -20,4 +20,6 @@ router.route("/name/:first").get(peopleController.findPersonByFirst);
 router.route("/name/:first/:last").get(peopleController.findPersonByFull);
 // Matches with "/api/people/cell/:number
 router.route("/cell/:number").get(peopleController.findPersonByCell);
+// Matches with "/populate/:id"
+router.route("/populate/:id").get(peopleController.populate);
 module.exports = router;
