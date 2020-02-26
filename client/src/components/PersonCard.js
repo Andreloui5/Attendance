@@ -35,9 +35,6 @@ function PersonCard(props) {
           <a href="#" key="3" style={{ float: "left" }} onClick={handleText}>
             <TextPerson res={props.res} />
           </a>,
-          // <Button key="2" onClick={handleUpdate}>
-          //   Update
-          // </Button>,
           <Button key="1" type="danger" onClick={handleDelete}>
             Delete
           </Button>
