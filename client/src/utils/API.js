@@ -54,5 +54,10 @@ export default {
   },
   findEventsAttended: function(id) {
     return axios.get("/api/people/populate/" + id);
+  },
+
+  // Clearstream Post
+  text: function() {
+    return axios.post("https://api.getclearstream.com/v1/messages");
   }
 };
