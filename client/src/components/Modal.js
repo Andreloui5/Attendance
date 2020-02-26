@@ -44,11 +44,7 @@ function MyVerticallyCenteredModal(props) {
             <Form.Label>Please write text below:</Form.Label>
             <Form.Control as="textarea" rows="3" maxLength="140" />
           </Form.Group>
-          <Button
-            variant="primary"
-            type="submit"
-            // onClick={(props.onHide, submitHandler)}
-          >
+          <Button variant="primary" type="submit">
             Send!
           </Button>
         </Form>
