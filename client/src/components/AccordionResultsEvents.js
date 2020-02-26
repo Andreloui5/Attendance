@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import { Accordion, Card, Button, Container } from "react-bootstrap";
 import moment from "moment";
 
@@ -19,9 +19,9 @@ function AccordionEvents(props) {
                 Event Host: {result.host} <br />
                 Type of Event: {result.type} <br />
                 Keyword Used: {result.keyword} <br />
-                <a href={"events/" + result._id}>
+                <Link to={"events/" + result._id}>
                   See Attenders from this Event
-                </a>
+                </Link>
               </Card.Body>
             </Accordion.Collapse>
           </Card>

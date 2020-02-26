@@ -8,8 +8,6 @@ import TextPerson from "./TextPerson";
 
 function PersonCard(props) {
   function handleText() {
-    console.log("Hi");
-
     return <TextPerson />;
   }
   // function handleUpdate() {}
@@ -34,7 +32,7 @@ function PersonCard(props) {
         onBack={() => window.history.back()}
         title={`${props.res.first} ${props.res.last}`}
         extra={[
-          <a key="3" style={{ float: "left" }} onClick={handleText}>
+          <a href="#" key="3" style={{ float: "left" }} onClick={handleText}>
             <TextPerson res={props.res} />
           </a>,
           // <Button key="2" onClick={handleUpdate}>

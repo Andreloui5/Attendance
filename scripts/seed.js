@@ -22,6 +22,14 @@ const eventSeed = [
     type: "block party",
     date: "12/24/1999",
     attenders: []
+  },
+  {
+    keyword: "attendapp",
+    name: "Neighborhood Bash, 1999",
+    host: "Local Society",
+    type: "block party",
+    date: "12/24/1999",
+    attenders: []
   }
 ];
 

@@ -5,7 +5,7 @@ import API from "../utils/API";
 
 function Person() {
   // get the required parameter
-  const query = window.location.pathname.substring(8);
+  const query = window.location.pathname.substr(-24);
   const [searchResults, setSearchResults] = useState("");
   const [attendedResults, setAttendedResults] = useState("");
   // function uses the api to search for a person in the database

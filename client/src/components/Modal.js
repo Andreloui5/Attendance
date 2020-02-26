@@ -6,17 +6,19 @@ function MyVerticallyCenteredModal(props) {
   console.log(props);
   let myHeader = "6e58312b7486fd02fe7ecb1fba0cb612";
 
-  function clickHandler(e) {
+  function submitHandler(e) {
     e.preventDefault();
     // Makes axios call to text
+    let meatball = e.target.textArea1.value;
+    console.log(meatball);
     axios({
       method: "POST",
       url: "https://api.getclearstream.com/v1/messages",
       headers: { "X-Api-Key": myHeader },
       data: {
         message_header: "AttendApp",
-        message_body: "test2",
-        subscribers: "+14028806971"
+        message_body: meatball,
+        subscribers: props.res.mobile_phone
       }
     })
       .then(res => {
@@ -37,26 +39,28 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
-          <Form.Group controlId="exampleForm.ControlTextarea1">
+        <Form onSubmit={submitHandler}>
+          <Form.Group controlId="textArea1">
             <Form.Label>Please write text below:</Form.Label>
-            <Form.Control
-              inputref="textarea"
-              as="textarea"
-              rows="3"
-              maxLength="140"
-            />
+            <Form.Control as="textarea" rows="3" maxLength="140" />
           </Form.Group>
+          <Button
+            variant="primary"
+            type="submit"
+            // onClick={(props.onHide, submitHandler)}
+          >
+            Send!
+          </Button>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button
+        {/* <Button
           variant="primary"
           type="submit"
-          onClick={(props.onHide, clickHandler)}
+          onClick={(props.onHide, submitHandler)}
         >
           Send!
-        </Button>
+        </Button> */}
       </Modal.Footer>
     </Modal>
   );
