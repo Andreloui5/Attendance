@@ -18,7 +18,7 @@ function MyVerticallyCenteredModal(props) {
       data: {
         message_header: "AttendApp",
         message_body: meatball,
-        subscribers: props.res.mobile_phone
+        subscribers: props.res.mobile_number
       }
     })
       .then(res => {
