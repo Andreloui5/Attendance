@@ -4,9 +4,14 @@ import { viewKeywords } from "../utils/helperfunctions";
 import API from "../utils/API";
 import moment from "moment";
 import { formatPhoneNumber } from "../utils/helperfunctions";
+import TextPerson from "./TextPerson";
 
 function PersonCard(props) {
-  function handleText() {}
+  function handleText() {
+    console.log("Hi");
+
+    return <TextPerson />;
+  }
   // function handleUpdate() {}
 
   // whe
@@ -29,9 +34,9 @@ function PersonCard(props) {
         onBack={() => window.history.back()}
         title={`${props.res.first} ${props.res.last}`}
         extra={[
-          <Button key="3" onClick={handleText}>
-            Text this Person
-          </Button>,
+          <a key="3" style={{ float: "left" }} onClick={handleText}>
+            <TextPerson res={props.res} />
+          </a>,
           // <Button key="2" onClick={handleUpdate}>
           //   Update
           // </Button>,

@@ -4,7 +4,6 @@ import { Accordion, Card, Button, Container } from "react-bootstrap";
 import moment from "moment";
 
 function AccordionEvents(props) {
-  console.log(props);
   return (
     <Container>
       {props.results.map(result => (

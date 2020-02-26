@@ -53,3 +53,8 @@ Header h1 {
   text-align: center;
   width: 100%;
 }
+
+/* Links on Accordions */
+.redirectLink {
+ color: blue;
+}

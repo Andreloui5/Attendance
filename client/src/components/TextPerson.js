@@ -1,95 +1,51 @@
-import { Button, Modal, Form, Input, Radio } from "antd";
+import React, { useState } from "react";
+import { ButtonToolbar, Modal, Form } from "react-bootstrap";
+import { Button } from "antd";
 
-const CollectionCreateForm = Form.create({ name: "form_in_modal" })(
-  // eslint-disable-next-line
-  class extends React.Component {
-    render() {
-      const { visible, onCancel, onCreate, form } = this.props;
-      const { getFieldDecorator } = form;
-      return (
-        <Modal
-          visible={visible}
-          title="Create a new collection"
-          okText="Create"
-          onCancel={onCancel}
-          onOk={onCreate}
-        >
-          <Form layout="vertical">
-            <Form.Item label="Title">
-              {getFieldDecorator("title", {
-                rules: [
-                  {
-                    required: true,
-                    message: "Please input the title of collection!"
-                  }
-                ]
-              })(<Input />)}
-            </Form.Item>
-            <Form.Item label="Description">
-              {getFieldDecorator("description")(<Input type="textarea" />)}
-            </Form.Item>
-            <Form.Item className="collection-create-form_last-form-item">
-              {getFieldDecorator("modifier", {
-                initialValue: "public"
-              })(
-                <Radio.Group>
-                  <Radio value="public">Public</Radio>
-                  <Radio value="private">Private</Radio>
-                </Radio.Group>
-              )}
-            </Form.Item>
-          </Form>
-        </Modal>
-      );
-    }
-  }
-);
-
-class CollectionsPage extends React.Component {
-  state = {
-    visible: false
-  };
-
-  showModal = () => {
-    this.setState({ visible: true });
-  };
-
-  handleCancel = () => {
-    this.setState({ visible: false });
-  };
-
-  handleCreate = () => {
-    const { form } = this.formRef.props;
-    form.validateFields((err, values) => {
-      if (err) {
-        return;
-      }
-
-      console.log("Received values of form: ", values);
-      form.resetFields();
-      this.setState({ visible: false });
-    });
-  };
-
-  saveFormRef = formRef => {
-    this.formRef = formRef;
-  };
-
-  render() {
-    return (
-      <div>
-        <Button type="primary" onClick={this.showModal}>
-          New Collection
+function MyVerticallyCenteredModal(props) {
+  console.log(props);
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Message to {props.res.first} {props.res.last}
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form.Group controlId="exampleForm.ControlTextarea1">
+          <Form.Label>Please write text below:</Form.Label>
+          <Form.Control as="textarea" rows="3" maxlength="140" />
+        </Form.Group>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button type="primary" onClick={props.onHide}>
+          Send!
         </Button>
-        <CollectionCreateForm
-          wrappedComponentRef={this.saveFormRef}
-          visible={this.state.visible}
-          onCancel={this.handleCancel}
-          onCreate={this.handleCreate}
-        />
-      </div>
-    );
-  }
+      </Modal.Footer>
+    </Modal>
+  );
 }
 
-ReactDOM.render(<CollectionsPage />, mountNode);
+function TextPerson(props) {
+  const [modalShow, setModalShow] = useState(false);
+
+  return (
+    <ButtonToolbar>
+      <Button key="3" onClick={() => setModalShow(true)} res={props.res}>
+        Text this Person
+      </Button>
+
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        res={props.res}
+      />
+    </ButtonToolbar>
+  );
+}
+export default TextPerson;

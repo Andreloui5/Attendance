@@ -1,9 +1,7 @@
 import React from "react";
 import { PageHeader, Button, Descriptions } from "antd";
-import { viewKeywords } from "../utils/helperfunctions";
 import API from "../utils/API";
 import moment from "moment";
-import { formatPhoneNumber } from "../utils/helperfunctions";
 
 function EventCard(props) {
   // function handleUpdate() {}
