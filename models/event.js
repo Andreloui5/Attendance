@@ -8,7 +8,13 @@ const eventSchema = new Schema({
   host: { type: String },
   type: String,
   // dates stamp formatted by moment().format()
-  date: { type: Date, default: moment().format() }
+  date: { type: String, default: moment().format("L") },
+  attenders: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Person"
+    }
+  ]
 });
 
 const Event = mongoose.model("Event", eventSchema);

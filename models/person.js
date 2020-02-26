@@ -7,9 +7,16 @@ const personSchema = new Schema({
   first: String,
   last: String,
   email: String,
-  date: { type: Date, default: moment().format() },
+  date: { type: String, default: moment().format("L") },
   keywordsTexted: [{ type: String }],
-  keywordDatePair: [{ type: String }]
+  keywordDatePair: [{ type: String }],
+  lastKeywordTexted: String,
+  events: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Event"
+    }
+  ]
 });
 
 const Person = mongoose.model("Person", personSchema);

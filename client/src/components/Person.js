@@ -10,9 +10,9 @@ function Person() {
   useEffect(() => {
     API.findPerson(query).then(res => {
       setSearchResults(res.data);
-      console.log(res.data);
     });
   }, []);
+
   return (
     <div>
       {searchResults !== "" ? <PersonCard res={searchResults} /> : <div></div>}

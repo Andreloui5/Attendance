@@ -18,11 +18,14 @@ app.use(routes);
 // connects to Mongo DB
 const mongoURL =
   process.env.MONGOLAB_YELLOW_URI || "mongodb://localhost:27017/attend";
-mongoose.connect(mongoURL, { useNewUrlParser: true }).then(() => {
-  console.log("Successfully connected to mongoDB").catch(err => {
-    console.log("error connecting to mongoDB");
+mongoose
+  .connect(mongoURL, { useNewUrlParser: true })
+  .then(() => {
+    console.log("Successfully connected to mongoDB");
+  })
+  .catch(err => {
+    throw err;
   });
-});
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);

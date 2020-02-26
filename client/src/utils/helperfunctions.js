@@ -46,7 +46,3 @@ export function parsePair(keywordDatePair) {
   }
   return array;
 }
-// keywordDatePair.forEach(pair => {
-//   //returns an array wth the two values in keywordDatePair
-//   return (newVal = pair.value.split("&&&&"));
-// });

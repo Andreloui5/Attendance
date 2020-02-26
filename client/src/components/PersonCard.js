@@ -8,6 +8,8 @@ import { formatPhoneNumber } from "../utils/helperfunctions";
 function PersonCard(props) {
   function handleText() {}
   function handleUpdate() {}
+
+  // whe
   function handleDelete() {
     API.deletePerson(props.res._id)
       // .then(<Success />);
