@@ -17,10 +17,11 @@ function Home() {
   const [searchParam, setSearchParam] = useState("Search By: ");
 
   function handleClick(e) {
-    console.log(e.target.name);
+    console.log(e.target);
     const name = e.target.name;
     // updates state with search parameter
     setSearchParam(name);
+    setSearchValue(searchValue + " ");
   }
 
   useEffect(function updateDropdown() {
@@ -122,7 +123,7 @@ function Home() {
             placeholder="Search Text"
             aria-label="Search Text"
             aria-describedby="basic-addon2"
-            onChange={e => setSearchValue(e.target.value)}
+            onChange={e => setSearchValue(e.target.value.trim())}
           />
           <DropdownButton
             as={InputGroup.Append}
