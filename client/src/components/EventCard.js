@@ -2,6 +2,7 @@ import React from "react";
 import { PageHeader, Button, Descriptions } from "antd";
 import API from "../utils/API";
 import moment from "moment";
+import "../css/TopCard.css";
 
 function EventCard(props) {
   // function handleUpdate() {}
@@ -19,8 +20,10 @@ function EventCard(props) {
         backgroundColor: "#001529",
         padding: 24
       }}
+      className="topCard"
     >
       <PageHeader
+        style={{ borderRadius: "5px" }}
         ghost={false}
         onBack={() => window.history.back()}
         title={`${props.res.name}`}
