@@ -5,6 +5,7 @@ import API from "../utils/API";
 import moment from "moment";
 import { formatPhoneNumber } from "../utils/helperfunctions";
 import TextPerson from "./TextPerson";
+import "../css/TopCard.css";
 
 function PersonCard(props) {
   function handleText() {
@@ -26,8 +27,10 @@ function PersonCard(props) {
         backgroundColor: "#001529",
         padding: 24
       }}
+      className="topCard"
     >
       <PageHeader
+        style={{ borderRadius: "5px" }}
         ghost={false}
         onBack={() => window.history.back()}
         title={`${props.res.first} ${props.res.last}`}

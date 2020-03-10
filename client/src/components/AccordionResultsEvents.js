@@ -2,13 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Accordion, Card, Button, Container } from "react-bootstrap";
 import moment from "moment";
+import "../css/Accordion.css";
 
 function AccordionEvents(props) {
   return (
     <Container>
       {props.results.map(result => (
-        <Accordion defaultActiveKey="1" key={result._id} xl={12}>
-          <Card>
+        <Accordion
+          className="result"
+          defaultActiveKey="1"
+          key={result._id}
+          xl={12}
+        >
+          <Card className="rounded">
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="0">
                 {result.name}: {moment(result.date).format("ll")}

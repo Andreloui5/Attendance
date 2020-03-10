@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  Jumbotron,
   Container,
   Row,
   InputGroup,
@@ -112,52 +113,58 @@ function Home() {
 
   return (
     <Container id="topSearch">
+      <Jumbotron id="homeJumbo">
+        <Row>
+          <h1 sm={12} className="headerText">
+            Search
+          </h1>
+        </Row>
+        <Row>
+          <InputGroup>
+            <FormControl
+              placeholder="Search Text"
+              aria-label="Search Text"
+              aria-describedby="basic-addon2"
+              onChange={e => setSearchValue(e.target.value.trim())}
+            />
+            <DropdownButton
+              as={InputGroup.Append}
+              variant="outline-secondary"
+              title="Search For: "
+              id="input-group-dropdown-2"
+            >
+              <Dropdown.Item onClick={handleClick} name="Event By Keyword">
+                Event By Keyword
+              </Dropdown.Item>
+              <Dropdown.Item onClick={handleClick} name="Event By Name">
+                Event By Name
+              </Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item onClick={handleClick} name="Person By Name">
+                Person By Name
+              </Dropdown.Item>
+              <Dropdown.Item onClick={handleClick} name="Person By Cell">
+                Person By Cell
+              </Dropdown.Item>
+            </DropdownButton>
+          </InputGroup>
+        </Row>
+      </Jumbotron>
       <Row>
-        <h1 sm={12} className="headerText mt-5">
-          Search
-        </h1>
+        {/* Conditionally Renders results depending on search Parameters chosen by user */}
+        {searchParam === "Event By Keyword" ||
+        searchParam === "Event By Name" ? (
+          <AccordionEvents results={searchResults} />
+        ) : (
+          <div></div>
+        )}
+        {searchParam === "Person By Name" ||
+        searchParam === "Person By Cell" ? (
+          <AccordionPeople results={searchResults} />
+        ) : (
+          <div></div>
+        )}
       </Row>
-      <Row>
-        <InputGroup>
-          <FormControl
-            placeholder="Search Text"
-            aria-label="Search Text"
-            aria-describedby="basic-addon2"
-            onChange={e => setSearchValue(e.target.value.trim())}
-          />
-          <DropdownButton
-            as={InputGroup.Append}
-            variant="outline-secondary"
-            title="Search For: "
-            id="input-group-dropdown-2"
-          >
-            <Dropdown.Item onClick={handleClick} name="Event By Keyword">
-              Event By Keyword
-            </Dropdown.Item>
-            <Dropdown.Item onClick={handleClick} name="Event By Name">
-              Event By Name
-            </Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item onClick={handleClick} name="Person By Name">
-              Person By Name
-            </Dropdown.Item>
-            <Dropdown.Item onClick={handleClick} name="Person By Cell">
-              Person By Cell
-            </Dropdown.Item>
-          </DropdownButton>
-        </InputGroup>
-      </Row>
-      {/* Conditionally Renders results depending on search Parameters chosen by user */}
-      {searchParam === "Event By Keyword" || searchParam === "Event By Name" ? (
-        <AccordionEvents results={searchResults} />
-      ) : (
-        <div></div>
-      )}
-      {searchParam === "Person By Name" || searchParam === "Person By Cell" ? (
-        <AccordionPeople results={searchResults} />
-      ) : (
-        <div></div>
-      )}
     </Container>
   );
 }
