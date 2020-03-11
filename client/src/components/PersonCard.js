@@ -13,7 +13,7 @@ function PersonCard(props) {
   }
   // function handleUpdate() {}
 
-  // whe
+  // when clicked, delete person
   function handleDelete() {
     API.deletePerson(props.res._id)
       // .then(<Success />);
@@ -35,7 +35,7 @@ function PersonCard(props) {
         onBack={() => window.history.back()}
         title={`${props.res.first} ${props.res.last}`}
         extra={[
-          <a href="#" key="3" style={{ float: "left" }} onClick={handleText}>
+          <a key="3" style={{ float: "left" }} onClick={handleText}>
             <TextPerson res={props.res} />
           </a>,
           <Button key="1" type="danger" onClick={handleDelete}>

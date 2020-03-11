@@ -1,7 +1,8 @@
 import React from "react";
 import { Form, Button, Col, Container, Row } from "react-bootstrap";
+import { openNotification } from "./Notification";
 import "../css/App.css";
-import { numberScrub } from "../utils/helperfunctions";
+import { numberScrub, capitalize } from "../utils/helperfunctions";
 import API from "../utils/API";
 
 function NewPerson() {
@@ -10,9 +11,24 @@ function NewPerson() {
     e.preventDefault();
 
     let mobile = numberScrub(e.target.formPersonPhone.value);
-    let first = e.target.formPersonFirst.value;
-    let last = e.target.formPersonLast.value;
+    let first = capitalize(e.target.formPersonFirst.value);
+    let last = capitalize(e.target.formPersonLast.value);
     let email = e.target.formPersonEmail.value;
+
+    // adding validations to above
+    if (
+      mobile === "" ||
+      mobile === "+1" ||
+      first === "" ||
+      last === "" ||
+      email === ""
+    ) {
+      return openNotification(
+        "error",
+        "All fields must be completed prior to submission."
+      );
+    }
+
     API.savePerson({
       mobile_number: mobile,
       first: first,
@@ -21,9 +37,20 @@ function NewPerson() {
     })
       // upon success, send res of 200 to the origin of the webhook
       .then(res => {
-        console.log(res);
+        res.status === 200
+          ? openNotification("success", "Your submission has been saved.")
+          : openNotification(
+              "error",
+              "There was an error processing your submission. Please try again later."
+            );
       })
-      .then(alert("saved"));
+      .catch(err => {
+        openNotification(
+          "error",
+          "There was an error processing your submission. Please try again later."
+        );
+        throw err;
+      });
   }
 
   return (

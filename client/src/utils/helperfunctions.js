@@ -1,11 +1,16 @@
+import { openNotification } from "../components/Notification";
+
 export function numberScrub(numberString) {
   // removes non-number characters from incoming string incoming number
   let cleaned = ("" + numberString).replace(/\D/g, "");
   // adds "+1" to number (so that it fits intl number format)
   let newNum = `+1${cleaned}`;
   // if the number is too long, it return an error
-  if (newNum.length > 12) {
-    alert("Please enter area code and number only");
+  if (cleaned.length !== 10) {
+    openNotification(
+      "error",
+      "Please enter 10-digit area code and number only"
+    );
   }
   return newNum;
 }
@@ -45,4 +50,9 @@ export function parsePair(keywordDatePair) {
     });
   }
   return array;
+}
+
+// takes a text input, lowercases it, and capitalizes the first letter.
+export function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 }

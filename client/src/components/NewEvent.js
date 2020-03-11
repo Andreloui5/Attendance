@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Button, Col, Container, Row } from "react-bootstrap";
 import API from "../utils/API";
+import { openNotification } from "./Notification";
 
 function NewEvent() {
   function handleClick(e) {
@@ -10,6 +11,14 @@ function NewEvent() {
     let keyword = e.target.formEventKeyword.value;
     let host = e.target.formEventHost.value;
     let type = e.target.formEventType.value;
+
+    if (name === "" || keyword === "") {
+      return openNotification(
+        "error",
+        "Name, Keyword, and Date fields must be completed prior to submission."
+      );
+    }
+
     API.saveEvent({
       name: name,
       keyword: keyword,

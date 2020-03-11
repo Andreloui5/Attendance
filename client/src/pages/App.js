@@ -6,7 +6,7 @@ import Event from "../components/Event";
 import NewEvent from "../components/NewEvent";
 import Person from "../components/Person";
 import NewPerson from "../components/NewPerson";
-import Account from "../components/Account";
+// import Account from "../components/Account";
 import NotFound from "../components/NotFound";
 import Logo from "../assets/Logo.png";
 import "antd/dist/antd.css";
@@ -54,12 +54,12 @@ class App extends React.Component {
                     <span className="nav-text">Create Event</span>
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="4">
+                {/* <Menu.Item key="4">
                   <Link to="/account">
                     <Icon type="setting" />
                     <span className="nav-text">My Account</span>
                   </Link>
-                </Menu.Item>
+                </Menu.Item> */}
               </Menu>
             </Sider>
             <Layout>
@@ -80,9 +80,9 @@ class App extends React.Component {
                   <Route exact path="/newEvent">
                     <NewEvent />
                   </Route>
-                  <Route exact path="/account">
+                  {/* <Route exact path="/account">
                     <Account />
-                  </Route>
+                  </Route> */}
                   <Route>
                     <NotFound />
                   </Route>
