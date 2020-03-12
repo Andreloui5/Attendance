@@ -37,6 +37,13 @@ Header h1 {
   transition: all 0.2s;
 }
 
+@media only screen and (max-width: 600px) {
+  #appLogo {
+    height: 100px;
+    margin: 30px 0 30px 65px;
+  }
+}
+
 /*=============\\
 ||    Pages    ||
 \\=============*/
@@ -70,4 +77,8 @@ Header h1 {
   0 3.8px 2.9px rgba(0, 0, 0, 0.042),
   0 7.1px 5.4px rgba(0, 0, 0, 0.05),
   0 17px 13px rgba(0, 0, 0, 0.07);
+}
+
+.inputField {
+  background-color: #f7f7f7;
 }

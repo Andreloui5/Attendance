@@ -61,7 +61,7 @@ function NewPerson() {
             Create User
           </h1>
         </Row>
-        <Form onSubmit={handleClick}>
+        <Form onSubmit={handleClick} className="mb-3">
           <Form.Row className="mt-2">
             <Form.Group md={6} sm={12} as={Col} controlId="formPersonFirst">
               <Form.Label>First Name</Form.Label>

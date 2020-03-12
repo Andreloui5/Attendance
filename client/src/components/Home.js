@@ -122,6 +122,7 @@ function Home() {
         <Row>
           <InputGroup>
             <FormControl
+              className="inputField"
               placeholder="Search Text"
               aria-label="Search Text"
               aria-describedby="basic-addon2"

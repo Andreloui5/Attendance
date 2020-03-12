@@ -50,7 +50,7 @@ function NewEvent() {
             New Event
           </h1>
         </Row>
-        <Form onSubmit={handleClick}>
+        <Form onSubmit={handleClick} className="mb-3">
           <Form.Row className="mt-2">
             <Form.Group md={6} sm={12} as={Col} controlId="formEventName">
               <Form.Label>Event Name</Form.Label>
@@ -77,10 +77,10 @@ function NewEvent() {
           <Form.Row>
             <Form.Group md={6} sm={12} as={Col} controlId="formDate">
               <Form.Label>Date of Event</Form.Label>
-              <Form.Control placeholder="Please format date in 'MM/DD/YYYY' format" />
+              <Form.Control placeholder="Please format date as 'MM/DD/YYYY'" />
             </Form.Group>
           </Form.Row>
-          <Button className="float-right mb-4" variant="primary" type="submit">
+          <Button className="float-right mb-5" variant="primary" type="submit">
             Submit
           </Button>
         </Form>
