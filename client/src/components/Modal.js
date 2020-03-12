@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { formatPhoneNumber } from "../utils/helperfunctions";
+import { openNotification } from "./Notification";
 import axios from "axios";
 
 function MyVerticallyCenteredModal(props) {
@@ -10,22 +11,29 @@ function MyVerticallyCenteredModal(props) {
   function submitHandler(e) {
     e.preventDefault();
     // Makes axios call to text
-    let meatball = e.target.textArea1.value;
-    console.log(meatball);
+    let textContent = e.target.textArea1.value;
+    console.log(textContent);
     axios({
       method: "POST",
       url: "https://api.getclearstream.com/v1/messages",
       headers: { "X-Api-Key": myHeader },
       data: {
         message_header: "AttendApp",
-        message_body: meatball,
+        message_body: textContent,
         subscribers: props.res.mobile_number
       }
     })
       .then(res => {
         console.log(res);
+        openNotification("success", "Your message has been sent");
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        openNotification(
+          "error",
+          "Your text was unable to send. Please try again later."
+        );
+        console.log(err);
+      });
   }
   return (
     <Modal
