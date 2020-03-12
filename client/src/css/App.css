@@ -60,6 +60,9 @@ Header h1 {
 }
 
 #homeJumbo {
+  border: .5px;
+  border-color: lightgrey;
+  border-style: solid;
   box-shadow:
   0 0.5px 0.4px rgba(0, 0, 0, 0.02),
   0 1.1px 0.9px rgba(0, 0, 0, 0.028),

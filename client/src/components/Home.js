@@ -113,7 +113,7 @@ function Home() {
 
   return (
     <Container id="topSearch">
-      <Jumbotron id="homeJumbo">
+      <Jumbotron id="homeJumbo" className="bg-transparent">
         <Row>
           <h1 sm={12} className="headerText">
             Search
