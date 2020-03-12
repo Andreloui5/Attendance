@@ -26,7 +26,12 @@ function AccordionPeople(props) {
                 Email: {result.email} <br />
                 Keywords Texted: {viewKeywords(result.keywordsTexted)}
                 <br />
-                <Link to={"people/" + result._id}>
+                <Link
+                  to={{
+                    pathname: `/people/${result._id}`,
+                    state: "/"
+                  }}
+                >
                   See events this person has attended
                 </Link>
               </Card.Body>

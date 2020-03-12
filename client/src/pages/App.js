@@ -68,13 +68,13 @@ class App extends React.Component {
                   <Route exact path={["/", "/home"]}>
                     <Home />
                   </Route>
-                  <Route exact path="/people/:id">
+                  <Route path="/people/:id">
                     <Person />
                   </Route>
                   <Route exact path="/newPerson">
                     <NewPerson />
                   </Route>
-                  <Route exact path="/events/:id">
+                  <Route path="/events/:id">
                     <Event />
                   </Route>
                   <Route exact path="/newEvent">

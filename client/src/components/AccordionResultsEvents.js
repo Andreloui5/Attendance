@@ -25,7 +25,12 @@ function AccordionEvents(props) {
                 Event Host: {result.host} <br />
                 Type of Event: {result.type} <br />
                 Keyword Used: {result.keyword} <br />
-                <Link to={"events/" + result._id}>
+                <Link
+                  to={{
+                    pathname: `/events/${result._id}`,
+                    state: "/"
+                  }}
+                >
                   See Attenders from this Event
                 </Link>
               </Card.Body>

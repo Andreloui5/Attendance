@@ -44,7 +44,7 @@ function NewEvent() {
   }
   return (
     <Container>
-      <Jumbotron id="homeJumbo">
+      <Jumbotron id="homeJumbo" className="bg-transparent">
         <Row>
           <h1 sm={12} className="headerText">
             New Event
