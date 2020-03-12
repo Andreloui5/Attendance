@@ -56,3 +56,13 @@ export function parsePair(keywordDatePair) {
 export function capitalize(word) {
   return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 }
+
+// checks for a valid MM/DD/YYYY date entry
+export function checkDate(date) {
+  const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+  if (dateRegex.test(date)) {
+    console.log("successful date entry");
+  } else {
+    return openNotification("error", "Please enter a valid date.");
+  }
+}

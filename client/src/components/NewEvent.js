@@ -11,25 +11,36 @@ function NewEvent() {
     let keyword = e.target.formEventKeyword.value;
     let host = e.target.formEventHost.value;
     let type = e.target.formEventType.value;
+    let date = e.target.formDate.value;
 
-    if (name === "" || keyword === "") {
+    // validates against empty fields
+    if (name === "" || keyword === "" || date === "") {
       return openNotification(
         "error",
         "Name, Keyword, and Date fields must be completed prior to submission."
       );
     }
-
-    API.saveEvent({
-      name: name,
-      keyword: keyword,
-      host: host,
-      type: type
-    })
-      // upon success, send res of 200 to the origin of the webhook
-      .then(res => {
-        console.log(res);
-      })
-      .then(alert("saved"));
+    //validates correct date entry
+    function checkDate(date) {
+      const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+      if (dateRegex.test(date) === false) {
+        return openNotification("error", "Please enter a valid date.");
+      } else {
+        API.saveEvent({
+          name: name,
+          keyword: keyword,
+          host: host,
+          type: type,
+          date: date
+        })
+          // upon success, send res of 200 to the origin of the webhook
+          .then(res => {
+            console.log(res);
+          })
+          .then(openNotification("success", "Your submission has been saved."));
+      }
+    }
+    checkDate(date);
   }
   return (
     <Container>
@@ -62,7 +73,12 @@ function NewEvent() {
             <Form.Control placeholder="ex: Bob Smith, ABC Company, etc." />
           </Form.Group>
         </Form.Row>
-
+        <Form.Row>
+          <Form.Group md={6} sm={12} as={Col} controlId="formDate">
+            <Form.Label>Date of Event</Form.Label>
+            <Form.Control placeholder="Please format date in 'MM/DD/YYYY' format" />
+          </Form.Group>
+        </Form.Row>
         <Button className="float-right mb-4" variant="primary" type="submit">
           Submit
         </Button>

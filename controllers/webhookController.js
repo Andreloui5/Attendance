@@ -6,13 +6,23 @@ module.exports = {
   evaluate: function(req, res) {
     // console.log(req.body.data.subscriber.mobile_number);
     let mobile = req.body.data.subscriber.mobile_number;
-    let first = req.body.data.subscriber.first;
-    let last = req.body.data.subscriber.last;
-    let email = req.body.data.subscriber.email;
+    let first =
+      req.body.data.subscriber.first !== null
+        ? req.body.data.subscriber.first
+        : "Unknown";
+    let last =
+      req.body.data.subscriber.last !== null
+        ? req.body.data.subscriber.last
+        : "Unknown";
+    let email =
+      req.body.data.subscriber.email !== null
+        ? req.body.data.subscriber.email
+        : "Unknown";
     let date = moment(req.body.data.created_at).format("L");
     let keywordTexted = req.body.data.keyword.name;
 
     //Finds event which is occurring today, with this keyword
+    // First, we find the person texting by their mobile number
     db.Person.findOneAndUpdate(
       {
         mobile_number: mobile
@@ -60,6 +70,7 @@ module.exports = {
             });
           });
       } else {
+        // This fires if the original query came back with a result, and therefore we did not need to create a new person in our database
         console.log("else");
         db.Event.findOneAndUpdate(
           {

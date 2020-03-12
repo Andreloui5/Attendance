@@ -11,28 +11,28 @@ const eventSeed = [
     name: "Sunday Service",
     host: "Orangewood Church",
     type: "service",
-    date: "2016-06-12T10:00:00Z"
+    date: "3/1/2020"
   },
   {
     keyword: "webhooktest",
     name: "Sunday Service",
     host: "Orangewood Church",
     type: "service",
-    date: "2020-02-18T13:56:09-05:00"
+    date: "2/25/2020"
   },
   {
     keyword: "hello",
     name: "Neighborhood Bash, 2020",
     host: "Local Society",
     type: "block party",
-    date: "2020-01-12T10:56:09-05:00"
+    date: "12/24/1999"
   },
   {
     keyword: "hello",
     name: "Community Matters",
     host: "Local Society",
     type: "town hall meeting",
-    date: "2020-01-14T10:56:09-05:00"
+    date: "12/24/1999"
   }
 ];
 
