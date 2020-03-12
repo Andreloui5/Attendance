@@ -23,7 +23,6 @@ function PersonCard(props) {
   return (
     <div
       style={{
-        // backgroundColor: "#F5F5F5",
         backgroundColor: "#001529",
         padding: 24
       }}
