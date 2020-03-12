@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import EventCard from "../components/EventCard";
 import AccordionPeople from "../components/AccordionResultsPeople";
 import API from "../utils/API";
+import "../css/App.css";
 
 function Event() {
   // get the required parameter
@@ -29,9 +30,17 @@ function Event() {
       <br></br>
       {/* If the event has attended any events, render the event cards */}
       {attendedResults !== "" ? (
-        <AccordionPeople key={attendedResults._id} results={attendedResults} />
+        <div>
+          <h3 className="header3">People who atttended this event:</h3>
+          <AccordionPeople
+            key={attendedResults._id}
+            results={attendedResults}
+          />
+        </div>
       ) : (
-        <div></div>
+        <div>
+          <h3 className="header3">This event does not have any attenders.</h3>
+        </div>
       )}
     </div>
   );

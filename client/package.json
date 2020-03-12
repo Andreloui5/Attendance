@@ -15,7 +15,8 @@
     "antd": "3.26.11",
     "react-bootstrap": "^1.0.0-beta.16",
     "axios": "0.19.2",
-    "react-datepicker": "2.14.0"
+    "react-datepicker": "2.14.0",
+    "react-google-charts": "3.0.15"
   },
   "scripts": {
     "start": "react-scripts start",

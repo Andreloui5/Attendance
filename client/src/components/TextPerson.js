@@ -15,6 +15,7 @@ function TextPerson(props) {
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
+        onSubmit={() => setModalShow(false)}
         res={props.res}
       />
     </ButtonToolbar>

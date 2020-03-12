@@ -82,3 +82,9 @@ Header h1 {
 .inputField {
   background-color: #f7f7f7;
 }
+
+/* Header for H3 elements */
+.header3{
+  text-align: center;
+  margin: 15px 0 20px;
+}

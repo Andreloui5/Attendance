@@ -6,7 +6,7 @@ import "../css/Accordion.css";
 
 function AccordionEvents(props) {
   return (
-    <Container>
+    <Container className="mt-4">
       {props.results.map(result => (
         <Accordion
           className="result"

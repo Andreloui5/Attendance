@@ -35,6 +35,12 @@ function MyVerticallyCenteredModal(props) {
         console.log(err);
       });
   }
+
+  // handleClick = e => {
+  //   e.preventDefault();
+  //   props.show = false;
+  // };
+
   return (
     <Modal
       {...props}
