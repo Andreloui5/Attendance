@@ -33,7 +33,11 @@ function PersonCard(props) {
         style={{ borderRadius: "5px" }}
         ghost={false}
         onBack={() => window.history.back()}
-        title={`${props.res.first} ${props.res.last}`}
+        title={
+          props.res.first === "Unknown"
+            ? formatPhoneNumber(props.res.mobile_number)
+            : `${props.res.first} ${props.res.last}`
+        }
         extra={[
           <a key="3" style={{ float: "left" }} onClick={handleText}>
             <TextPerson res={props.res} />

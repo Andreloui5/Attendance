@@ -17,7 +17,9 @@ function AccordionPeople(props) {
           <Card className="rounded">
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                {result.first} {result.last}
+                {result.first === "Unknown"
+                  ? formatPhoneNumber(result.mobile_number)
+                  : `${result.first} ${result.last}`}
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="0">

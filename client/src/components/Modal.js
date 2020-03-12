@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Form, Button } from "react-bootstrap";
+import { formatPhoneNumber } from "../utils/helperfunctions";
 import axios from "axios";
 
 function MyVerticallyCenteredModal(props) {
@@ -35,7 +36,11 @@ function MyVerticallyCenteredModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Message to {props.res.first} {props.res.last}
+          Message to{" "}
+          {/* if the user doesn't have name info, display mobile number */}
+          {props.res.first === "Unknown"
+            ? formatPhoneNumber(props.res.mobile_number)
+            : `${props.res.first} ${props.res.last}`}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
