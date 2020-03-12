@@ -18,7 +18,7 @@ function MyVerticallyCenteredModal(props) {
       url: "https://api.getclearstream.com/v1/messages",
       headers: { "X-Api-Key": myHeader },
       data: {
-        message_header: "AttendApp",
+        message_header: "Attend",
         message_body: textContent,
         subscribers: props.res.mobile_number
       }
