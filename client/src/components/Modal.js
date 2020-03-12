@@ -28,10 +28,6 @@ function MyVerticallyCenteredModal(props) {
         openNotification("success", "Your message has been sent");
       })
       .catch(err => {
-        // openNotification(
-        //   "error",
-        //   "Your text was unable to send. Please try again later."
-        // );
         console.log(err);
       });
   }
